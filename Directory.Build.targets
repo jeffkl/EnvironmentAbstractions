@@ -1,0 +1,54 @@
+<Project>
+  <Sdk Name="Microsoft.Build.CentralPackageVersions" Version="2.0.147" />
+
+  <!-- Signing properties -->
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)build\key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <!-- Generic package properties -->
+  <PropertyGroup>
+    <Authors>jeffkl</Authors>
+    <Company>jeffkl</Company>
+    <Copyright>© Jeff Kluge. All rights reserved.</Copyright>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols Condition="'$(IncludeSymbols)' == ''">true</IncludeSymbols>
+    <PackageIcon>PackageIcon.png</PackageIcon>
+    <PackageIconPath>$(MSBuildThisFileDirectory)build\$(PackageIcon)</PackageIconPath>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/jeffkl/EnvironmentAbstractions</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <RepositoryUrl>https://github.com/jeffkl/EnvironmentAbstractions.git</RepositoryUrl>
+    <SymbolPackageFormat Condition="'$(SymbolPackageFormat)' == ''">snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <!-- Properties for test projects -->
+  <PropertyGroup Condition="'$(IsTestProject)' == 'true'">
+    <NoWarn>$(NoWarn);SA0001;SA1600</NoWarn>
+  </PropertyGroup>
+
+  <!-- Items for all projects -->
+  <ItemGroup>
+    <InternalsVisibleTo Update="@(InternalsVisibleTo)" Key="002400000480000094000000060200000024000052534131000400000100010091a7db06fd3e75307acce0ec071e81a34e983c5d88ab2ed05b35a43a9bdd65803b39695596cfad93c0aad71e4c28cca7a84932f9b966a7817432b6f0633ce68736a3dbb6a7de5d65c7bd402a70ffdd15b9cebff6a03e7de74c1b8bdac8471a6183c4fea504570eddb1914b58ff1f58ba71fba025e2c6f48f6ce6e3b314059da9" />
+  </ItemGroup>
+
+  <!-- Items for packable projects -->
+  <ItemGroup>
+    <None Include="README.md"
+          Pack="true"
+          PackagePath="/" />
+    <None Include="$(MSBuildThisFileDirectory)LICENSE;$(PackageIconPath)"
+          Pack="true"
+          PackagePath="/"
+          Visible="false" />
+  </ItemGroup>
+
+  <!-- Items for test projects -->
+  <ItemGroup Condition="'$(IsTestProject)' == 'true'">
+    <Content Include="$(MSBuildThisFileDirectory)build\xunit.runner.json"
+             CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

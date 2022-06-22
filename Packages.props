@@ -1,0 +1,19 @@
+<Project>
+  <ItemGroup>
+    <PackageReference Update="coverlet.collector" Version="3.1.2" />
+    <PackageReference Update="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+    <PackageReference Update="Moq" Version="4.18.1" />
+    <PackageReference Update="Shouldly" Version="4.0.3" />
+    <PackageReference Update="xunit" Version="2.4.1" />
+    <PackageReference Update="xunit.runner.visualstudio" Version="2.4.3" />
+    <PackageReference Update="Microsoft.CodeAnalysis.BannedApiAnalyzers" Version="3.3.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <GlobalPackageReference Include="Microsoft.Build.Artifacts" Version="4.0.4" />
+    <GlobalPackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" />
+    <GlobalPackageReference Include="Nerdbank.GitVersioning" Version="3.5.107" />
+    <GlobalPackageReference Include="StyleCop.Analyzers" Version="1.1.118" />
+    <AdditionalFiles Include="$(MSBuildThisFileDirectory)build\stylecop.json" Visible="false" />
+    <Compile Include="$(MSBuildThisFileDirectory)src\GlobalSuppressions.cs" Condition="'$(UsingMicrosoftNoTargetsSdk)' != 'true'" />
+  </ItemGroup>
+</Project>

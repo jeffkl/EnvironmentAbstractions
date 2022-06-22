@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>Adds rules for Microsoft.CodeAnalysis.BannedApiAnalyzers to ensure projects don't use the System.Environment class to manipulate environment variables..</Description>
+    <PackageTags>Environment Variable Abstraction env var banned api</PackageTags>
+    <ArtifactsPath>$(BaseArtifactsPath)\$(MSBuildProjectName)\</ArtifactsPath>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <NoWarn>$(NoWarn);NU5128;SA0001</NoWarn>
+    <DevelopmentDependency>true</DevelopmentDependency>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EnvironmentAbstractions\EnvironmentAbstractions.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="build\*" Pack="true" PackagePath="build/" />
+    <None Include="buildTransitive\*" Pack="true" PackagePath="buildTransitive/" />
+  </ItemGroup>
+</Project>

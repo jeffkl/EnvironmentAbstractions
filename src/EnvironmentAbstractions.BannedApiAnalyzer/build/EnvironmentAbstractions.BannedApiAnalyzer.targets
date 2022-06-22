@@ -1,0 +1,7 @@
+﻿<Project>
+  <ItemGroup>
+    <AdditionalFiles Include="$(MSBuildThisFileDirectory)BannedSymbols.EnvironmentAbstractions.txt"
+                     Condition="'$(BanSystemEnvironmentVariableAPIs)' != 'false'"
+                     Visible="false" />
+  </ItemGroup>
+</Project>

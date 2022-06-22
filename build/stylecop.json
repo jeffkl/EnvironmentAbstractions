@@ -1,0 +1,18 @@
+{
+  "$schema": "https://raw.githubusercontent.com/DotNetAnalyzers/StyleCopAnalyzers/master/StyleCop.Analyzers/StyleCop.Analyzers/Settings/stylecop.schema.json",
+  "settings": {
+    "orderingRules": {
+      "usingDirectivesPlacement": "outsideNamespace",
+      "systemUsingDirectivesFirst": false,
+      "blankLinesBetweenUsingGroups": "require"
+    },
+    "namingRules": {
+      "allowCommonHungarianPrefixes": true
+    },
+    "documentationRules": {
+      "companyName": "Jeff Kluge",
+      "copyrightText": "Copyright (c) {companyName}.\n\nLicensed under the MIT license.",
+      "xmlHeader": false
+    }
+  }
+}
