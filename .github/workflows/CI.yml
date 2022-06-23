@@ -1,0 +1,81 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches: 
+      - main
+      - rel/*
+  pull_request:
+    branches: 
+      - main
+      - rel/*
+
+env:
+  ArtifactsDirectoryName: 'artifacts'
+  BuildConfiguration: 'Debug'
+  BuildPlatform: 'Any CPU'
+  ContinuousIntegrationBuild: 'true'
+  DotNet3Version: '3.x'
+  DotNet6Version: '6.x'
+
+jobs:
+  BuildAndTest:
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+        include:
+          - os: windows-latest
+            name: Windows
+          - os: ubuntu-latest
+            name: Linux
+          - os: macos-latest
+            name: MacOS
+      fail-fast: false
+
+    name: Build and Test (${{ matrix.name }})
+    runs-on: ${{ matrix.os }}
+  
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Install .NET ${{ env.DotNet3Version }}
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ env.DotNet3Version }}
+
+    - name: Install .NET ${{ env.DotNet6Version }}
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ env.DotNet6Version }}
+
+    - name: Build Solution
+      run: dotnet build "/Property:Platform=${{ env.BuildPlatform }};Configuration=${{ env.BuildConfiguration }}" "/BinaryLogger:${{ env.ArtifactsDirectoryName }}/build.binlog"
+
+    - name: Run Unit Tests (.NET Framework)
+      if: ${{ matrix.os == 'windows-latest' }}
+      run: dotnet test --logger trx --no-restore --no-build --framework net472 /noautorsp "/Property:Platform=${{ env.BuildPlatform }};Configuration=${{ env.BuildConfiguration }}" "/BinaryLogger:${{ env.ArtifactsDirectoryName }}/test-net472.binlog"
+
+    - name: Run Unit Tests (.NET Core 3.1)
+      run: dotnet test --logger trx --no-restore --no-build --framework netcoreapp3.1 /noautorsp "/Property:Platform=${{ env.BuildPlatform }};Configuration=${{ env.BuildConfiguration }}" "/BinaryLogger:${{ env.ArtifactsDirectoryName }}/test-netcoreapp3.1.binlog"
+
+    - name: Run Unit Tests (.NET 6)
+      run: dotnet test --logger trx --no-restore --no-build --framework net6.0 /noautorsp "/Property:Platform=${{ env.BuildPlatform }};Configuration=${{ env.BuildConfiguration }}" "/BinaryLogger:${{ env.ArtifactsDirectoryName }}/test-net6.0.binlog"
+
+    - name: Upload Test Results
+      uses: actions/upload-artifact@v2
+      if: success() || failure()
+      with:
+        name: test-results-${{ matrix.name }}
+        path: '**/TestResults/*.trx'
+        if-no-files-found: error
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v2
+      if: success() || failure()
+      with:
+        name: ${{ env.ArtifactsDirectoryName }}-${{ matrix.name }}
+        path: ${{ env.ArtifactsDirectoryName }}

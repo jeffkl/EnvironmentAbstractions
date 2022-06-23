@@ -1,0 +1,70 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32614.404
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{55D8C0E6-4848-49DD-852C-CAA32BBD3C69}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.rsp = Directory.Build.rsp
+		Directory.Build.targets = Directory.Build.targets
+		LICENSE = LICENSE
+		Packages.props = Packages.props
+		README.md = README.md
+		version.json = version.json
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnvironmentAbstractions", "src\EnvironmentAbstractions\EnvironmentAbstractions.csproj", "{80AA9A82-F46B-47C4-BB3E-5EA2BEBDFCB5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnvironmentAbstractions.UnitTests", "src\EnvironmentAbstractions.UnitTests\EnvironmentAbstractions.UnitTests.csproj", "{74C0D9E2-3383-4EC5-AD28-39AE187DF4D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnvironmentAbstractions.TestHelpers", "src\EnvironmentAbstractions.TestHelpers\EnvironmentAbstractions.TestHelpers.csproj", "{21233AD9-E8C2-4D6F-956D-C61C64938C74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnvironmentAbstractions.TestHelpers.UnitTests", "src\EnvironmentAbstractions.TestHelpers.UnitTests\EnvironmentAbstractions.TestHelpers.UnitTests.csproj", "{45A84466-C79E-4B56-A89E-C8C3BDB3E795}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnvironmentAbstractions.BannedApiAnalyzer", "src\EnvironmentAbstractions.BannedApiAnalyzer\EnvironmentAbstractions.BannedApiAnalyzer.csproj", "{576C1129-D7A4-495A-8E55-2F45C8D779FD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{FF9B8558-0D22-4504-9D65-2B6F85914F44}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\CI.yml = .github\workflows\CI.yml
+		.github\workflows\Official.yml = .github\workflows\Official.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{80AA9A82-F46B-47C4-BB3E-5EA2BEBDFCB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80AA9A82-F46B-47C4-BB3E-5EA2BEBDFCB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80AA9A82-F46B-47C4-BB3E-5EA2BEBDFCB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80AA9A82-F46B-47C4-BB3E-5EA2BEBDFCB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74C0D9E2-3383-4EC5-AD28-39AE187DF4D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74C0D9E2-3383-4EC5-AD28-39AE187DF4D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74C0D9E2-3383-4EC5-AD28-39AE187DF4D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74C0D9E2-3383-4EC5-AD28-39AE187DF4D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21233AD9-E8C2-4D6F-956D-C61C64938C74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21233AD9-E8C2-4D6F-956D-C61C64938C74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21233AD9-E8C2-4D6F-956D-C61C64938C74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21233AD9-E8C2-4D6F-956D-C61C64938C74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45A84466-C79E-4B56-A89E-C8C3BDB3E795}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45A84466-C79E-4B56-A89E-C8C3BDB3E795}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45A84466-C79E-4B56-A89E-C8C3BDB3E795}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45A84466-C79E-4B56-A89E-C8C3BDB3E795}.Release|Any CPU.Build.0 = Release|Any CPU
+		{576C1129-D7A4-495A-8E55-2F45C8D779FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{576C1129-D7A4-495A-8E55-2F45C8D779FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{576C1129-D7A4-495A-8E55-2F45C8D779FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{576C1129-D7A4-495A-8E55-2F45C8D779FD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FF9B8558-0D22-4504-9D65-2B6F85914F44} = {55D8C0E6-4848-49DD-852C-CAA32BBD3C69}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7A2E8992-3C4B-47AB-8EF9-5278E783E51B}
+	EndGlobalSection
+EndGlobal

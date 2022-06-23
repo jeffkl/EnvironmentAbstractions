@@ -1,0 +1,7 @@
+﻿M:System.Environment.ExpandEnvironmentVariables(System.String);Use IEnvironmentVariableProvider.ExpandEnvironmentVariables(string) instead.
+M:System.Environment.GetEnvironmentVariable(System.String);Use IEnvironmentVariableProvider.GetEnvironmentVariable(string) instead.
+M:System.Environment.GetEnvironmentVariable(System.String,System.EnvironmentVariableTarget);Use IEnvironmentVariableProvider.GetEnvironmentVariable(string, EnvironmentVariableTarget) instead.
+M:System.Environment.GetEnvironmentVariables(System.String);Use IEnvironmentVariableProvider.GetEnvironmentVariable(string) instead.
+M:System.Environment.GetEnvironmentVariables(System.String,System.EnvironmentVariableTarget);Use IEnvironmentVariableProvider.GetEnvironmentVariables(string, EnvironmentVariableTarget) instead.
+M:System.Environment.SetEnvironmentVariable(System.String,System.String);Use IEnvironmentVariableProvider.SetEnvironmentVariable(string, string) instead.
+M:System.Environment.SetEnvironmentVariable(System.String,System.String,System.EnvironmentVariableTarget);Use IEnvironmentVariableProvider.SetEnvironmentVariable(string, string, EnvironmentVariableTarget) instead.
