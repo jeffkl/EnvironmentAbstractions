@@ -1,4 +1,5 @@
 ﻿# EnvironmentAbstractions
+ ![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/EnvironmentAbstractions?label=EnvironmentAbstractions)
 
 The `EnvironmentAbstractions` package provides an interface, `IEnvironmentVariableProvider`, that can be used as a layer of abstraction for code to be easier to mock for unit testing.
 
