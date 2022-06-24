@@ -1,4 +1,5 @@
 # EnvironmentAbstractions.TestHelpers
+![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/EnvironmentAbstractions.TestHelpers?label=EnvironmentAbstractions.TestHelpers)
 
 The `EnvironmentAbstractions.TestHelpers` provides a helper implementation of `IEnvironmentVariableProvider` which can be passed to classes to mock environment variable values.
 
