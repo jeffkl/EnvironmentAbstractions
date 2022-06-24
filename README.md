@@ -1,4 +1,11 @@
 # `System.Environment` Abstractions for .NET
+
+![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/EnvironmentAbstractions?label=EnvironmentAbstractions)
+![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/EnvironmentAbstractions.TestHelpers?label=EnvironmentAbstractions.TestHelpers)
+![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/EnvironmentAbstractions.BannedApiAnalyzer?label=EnvironmentAbstractions.BannedApiAnalyzer)
+
+[![Official Build](https://github.com/jeffkl/EnvironmentAbstractions/actions/workflows/Official.yml/badge.svg)](https://github.com/jeffkl/EnvironmentAbstractions/actions/workflows/Official.yml)
+
 EnvironmentAbstractions is an interface abstraction for accessing environment variables in .NET to make testing components easier.  A lot of repositories have code that accesses environment variables
 and corresponding logic to mock the functionality in a unit test.  Some people set environment variables during tests while others have their own interfaces.  However,
 setting environment variables applies to the entire process which can limit the parallelism of test execution.  This API is similar to [System.IO.Abstractions](https://github.com/TestableIO/System.IO.Abstractions)
