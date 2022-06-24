@@ -1,4 +1,6 @@
 # EnvironmentAbstractions.BannedApiAnalyzer
+![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/EnvironmentAbstractions.BannedApiAnalyzer?label=EnvironmentAbstractions.BannedApiAnalyzer)
+
 The `EnvironmentAbstractions.BannedApiAnalyzer` package uses the
 [Microsoft.CodeAnalysis.BannedApiAnalyzers](https://github.com/dotnet/roslyn-analyzers/blob/main/src/Microsoft.CodeAnalysis.BannedApiAnalyzers/BannedApiAnalyzers.Help.md)
 package to prevent usages of `System.Environment` to access environment variables.
