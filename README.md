@@ -16,7 +16,8 @@ Use the `IEnvironmentVariableProvider` interface when accessing environment vari
 ```c#
 public static void PrintSortedEnvironmentVariables(IEnvironmentVariableProvider environmentVariableProvider)
 {
-    foreach (KeyValuePair<string, string> item in environmentVariableProvider.GetEnvironmentVariables().OrderBy(i => i.Key))
+    foreach (KeyValuePair<string, string> item in environmentVariableProvider.GetEnvironmentVariables()
+                                                      .OrderBy(i => i.Key))
     {
         Console.WriteLine("{0}={1}", item.Key, item.Value);
     }
@@ -33,7 +34,8 @@ public static void Main(string[] args)
 
 public static void PrintSortedEnvironmentVariables(IEnvironmentVariableProvider environmentVariableProvider)
 {
-    foreach (KeyValuePair<string, string> item in environmentVariableProvider.GetEnvironmentVariables().OrderBy(i => i.Key))
+    foreach (KeyValuePair<string, string> item in environmentVariableProvider.GetEnvironmentVariables()
+                                                      .OrderBy(i => i.Key))
     {
         Console.WriteLine("{0}={1}", item.Key, item.Value);
     }
