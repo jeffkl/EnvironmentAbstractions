@@ -1,9 +1,8 @@
 # `System.Environment` Abstractions for .NET
 
-![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/EnvironmentAbstractions?label=EnvironmentAbstractions)
-![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/EnvironmentAbstractions.TestHelpers?label=EnvironmentAbstractions.TestHelpers)
-![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/EnvironmentAbstractions.BannedApiAnalyzer?label=EnvironmentAbstractions.BannedApiAnalyzer)
-
+[![NuGet package EnvironmentAbstractions (with prereleases)](https://img.shields.io/nuget/vpre/EnvironmentAbstractions?label=EnvironmentAbstractions)](https://nuget.org/packages/EnvironmentAbstractions)
+[![NuGet package EnvironmentAbstractions.TestHelpers (with prereleases)](https://img.shields.io/nuget/vpre/EnvironmentAbstractions?label=EnvironmentAbstractions.TestHelpers)](https://nuget.org/packages/EnvironmentAbstractions.TestHelpers)
+[![NuGet package EnvironmentAbstractions.BannedApiAnalyzer (with prereleases)](https://img.shields.io/nuget/vpre/EnvironmentAbstractions?label=EnvironmentAbstractions.BannedApiAnalyzer)](https://nuget.org/packages/EnvironmentAbstractions.BannedApiAnalyzer)
 [![Official Build](https://github.com/jeffkl/EnvironmentAbstractions/actions/workflows/Official.yml/badge.svg)](https://github.com/jeffkl/EnvironmentAbstractions/actions/workflows/Official.yml)
 
 EnvironmentAbstractions is an interface abstraction for accessing environment variables in .NET to make testing components easier.  A lot of repositories have code that accesses environment variables
