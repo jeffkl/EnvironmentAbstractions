@@ -6,6 +6,8 @@
     <ArtifactsPath>$(BaseArtifactsPath)\$(MSBuildProjectName)\</ArtifactsPath>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IncludeBuildOutput>false</IncludeBuildOutput>
+    <IncludeSymbols>false</IncludeSymbols>
+    <SymbolPackageFormat></SymbolPackageFormat>
     <NoWarn>$(NoWarn);NU5128;SA0001</NoWarn>
     <DevelopmentDependency>true</DevelopmentDependency>
   </PropertyGroup>
