@@ -13,6 +13,8 @@ on:
 
 env:
   ArtifactsDirectoryName: 'artifacts'
+  TestResultsDirectoryName: 'coverage'
+  CommonTestArguments: '--no-restore --no-build --logger trx /noautorsp'
   BuildConfiguration: 'Debug'
   BuildPlatform: 'Any CPU'
   ContinuousIntegrationBuild: 'true'
@@ -27,10 +29,13 @@ jobs:
         include:
           - os: windows-latest
             name: Windows
+            testarguments: ''
           - os: ubuntu-latest
             name: Linux
+            testarguments: '--collect:"XPlat Code Coverage"'
           - os: macos-latest
             name: MacOS
+            testarguments: ''
       fail-fast: false
 
     name: Build and Test (${{ matrix.name }})
@@ -56,14 +61,30 @@ jobs:
       run: dotnet build "/Property:Platform=${{ env.BuildPlatform }};Configuration=${{ env.BuildConfiguration }}" "/BinaryLogger:${{ env.ArtifactsDirectoryName }}/build.binlog"
 
     - name: Run Unit Tests (.NET Framework)
-      if: ${{ matrix.os == 'windows-latest' }}
-      run: dotnet test --logger trx --no-restore --no-build --framework net472 /noautorsp "/Property:Platform=${{ env.BuildPlatform }};Configuration=${{ env.BuildConfiguration }}" "/BinaryLogger:${{ env.ArtifactsDirectoryName }}/test-net472.binlog"
+      if: ${{ matrix.name == 'Windows' }}
+      run: dotnet test ${{ env.CommonTestArguments }} ${{ matrix.TestArguments}} --framework net472 "/Property:Platform=${{ env.BuildPlatform }};Configuration=${{ env.BuildConfiguration }}" "/BinaryLogger:${{ env.ArtifactsDirectoryName }}/test-net472.binlog"
 
     - name: Run Unit Tests (.NET Core 3.1)
-      run: dotnet test --logger trx --no-restore --no-build --framework netcoreapp3.1 /noautorsp "/Property:Platform=${{ env.BuildPlatform }};Configuration=${{ env.BuildConfiguration }}" "/BinaryLogger:${{ env.ArtifactsDirectoryName }}/test-netcoreapp3.1.binlog"
+      run: dotnet test ${{ env.CommonTestArguments }} ${{ matrix.TestArguments}} --framework netcoreapp3.1 "/Property:Platform=${{ env.BuildPlatform }};Configuration=${{ env.BuildConfiguration }}" "/BinaryLogger:${{ env.ArtifactsDirectoryName }}/test-netcoreapp3.1.binlog"
 
     - name: Run Unit Tests (.NET 6)
-      run: dotnet test --logger trx --no-restore --no-build --framework net6.0 /noautorsp "/Property:Platform=${{ env.BuildPlatform }};Configuration=${{ env.BuildConfiguration }}" "/BinaryLogger:${{ env.ArtifactsDirectoryName }}/test-net6.0.binlog"
+      run: dotnet test ${{ env.CommonTestArguments }} ${{ matrix.TestArguments}} --framework net6.0 "/Property:Platform=${{ env.BuildPlatform }};Configuration=${{ env.BuildConfiguration }}" "/BinaryLogger:${{ env.ArtifactsDirectoryName }}/test-net6.0.binlog"
+
+    - name: Code Coverage Report
+      if: ${{ matrix.name == 'Linux' }}
+      uses: irongut/CodeCoverageSummary@v1.3.0
+      with:
+        filename: '**/TestResults/**/coverage.cobertura.xml'
+        badge: true
+        format: markdown
+        hide_complexity: true
+        indicators: true
+        output: both
+        thresholds: '60 80'
+
+    - name: Add Code Coverage Report to Summary
+      if: ${{ matrix.name == 'Linux' }}
+      run: cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY
 
     - name: Upload Test Results
       uses: actions/upload-artifact@v2
