@@ -61,7 +61,7 @@ namespace System
         public IEnumerable<string> Values => _hashtable.Values.Cast<string>();
 
         /// <inheritdoc cref="P:System.Collections.Generic.IReadOnlyDictionary`2.Item(`0)" />
-        public string this[string key] => (string)_hashtable[key];
+        public string this[string key] => (string)_hashtable[key] !;
 
         /// <inheritdoc cref="IReadOnlyDictionary{TKey, TValue}.ContainsKey(TKey)" />
         public bool ContainsKey(string key) => _hashtable.ContainsKey(key);
@@ -79,7 +79,7 @@ namespace System
 
             if (_hashtable.ContainsKey(key))
             {
-                value = (string)_hashtable[key];
+                value = (string)_hashtable[key] !;
 
                 return true;
             }
@@ -118,7 +118,7 @@ namespace System
             }
 
             /// <inheritdoc cref="IEnumerator.Current" />
-            object IEnumerator.Current => _enumerator.Current;
+            object IEnumerator.Current => _enumerator.Current!;
 
             /// <inheritdoc cref="IDisposable.Dispose" />
             public void Dispose()
