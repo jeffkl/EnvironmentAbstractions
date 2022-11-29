@@ -1,0 +1,37 @@
+﻿M:System.Environment.Exit(System.Int32);Use IEnvironmentProvider.Exit(int) instead.
+M:System.Environment.ExpandEnvironmentVariables(System.String);Use IEnvironmentProvider.ExpandEnvironmentVariables(string) instead.
+M:System.Environment.FailFast(System.String);Use IEnvironmentProvider.FailFast(string) instead.
+M:System.Environment.FailFast(System.String,System.Exception);Use IEnvironmentProvider.FailFast(string, Exception) instead.
+M:System.Environment.GetCommandLineArgs;Use IEnvironmentProvider.GetCommandLineArgs() instead.
+M:System.Environment.GetEnvironmentVariable(System.String);Use IEnvironmentProvider.GetEnvironmentVariable(string) instead.
+M:System.Environment.GetEnvironmentVariable(System.String,System.EnvironmentVariableTarget);Use IEnvironmentProvider.GetEnvironmentVariable(string, EnvironmentVariableTarget) instead.
+M:System.Environment.GetEnvironmentVariables(System.String);Use IEnvironmentProvider.GetEnvironmentVariable(string) instead.
+M:System.Environment.GetEnvironmentVariables(System.String,System.EnvironmentVariableTarget);Use IEnvironmentProvider.GetEnvironmentVariables(string, EnvironmentVariableTarget) instead.
+M:System.Environment.GetFolderPath(System.Environment.SpecialFolder);Use IEnvironmentProvider.GetFolderPath(Environment.SpecialFolder) instead.
+M:System.Environment.GetFolderPath(System.Environment.SpecialFolder,System.Environment.SpecialFolderOption);Use IEnvironmentProvider.GetFolderPath(Environment.SpecialFolder, Environment.SpecialFolderOption) instead.
+M:System.Environment.GetLogicalDrives;Use IEnvironmentProvider.GetLogicalDrives() instead.
+M:System.Environment.SetEnvironmentVariable(System.String,System.String);Use IEnvironmentProvider.SetEnvironmentVariable(string, string) instead.
+M:System.Environment.SetEnvironmentVariable(System.String,System.String,System.EnvironmentVariableTarget);Use IEnvironmentProvider.SetEnvironmentVariable(string, string, EnvironmentVariableTarget) instead.
+P:System.Environment.CommandLine;Use IEnvironmentProvider.CommandLine instead.
+P:System.Environment.CurrentDirectory;Use IEnvironmentProvider.CurrentDirectory instead.
+P:System.Environment.CurrentManagedThreadId;Use IEnvironmentProvider.CurrentManagedThreadId instead.
+P:System.Environment.ExitCode;Use IEnvironmentProvider.ExitCode instead.
+P:System.Environment.HasShutdownStarted;Use IEnvironmentProvider.HasShutdownStarted instead.
+P:System.Environment.Is64BitOperatingSystem;Use IEnvironmentProvider.Is64BitOperatingSystem instead.
+P:System.Environment.Is64BitProcess;Use IEnvironmentProvider.Is64BitProcess instead.
+P:System.Environment.MachineName;Use IEnvironmentProvider.MachineName instead.
+P:System.Environment.NewLine;Use IEnvironmentProvider.NewLine instead.
+P:System.Environment.OSVersion;Use IEnvironmentProvider.OSVersion instead.
+P:System.Environment.ProcessId;Use IEnvironmentProvider.ProcessId instead.
+P:System.Environment.ProcessorCount;Use IEnvironmentProvider.ProcessorCount instead.
+P:System.Environment.ProcessPath;Use IEnvironmentProvider.ProcessPath instead.
+P:System.Environment.StackTrace;Use IEnvironmentProvider.StackTrace instead.
+P:System.Environment.SystemDirectory;Use IEnvironmentProvider.SystemDirectory instead.
+P:System.Environment.SystemPageSize;Use IEnvironmentProvider.SystemPageSize instead.
+P:System.Environment.TickCount;Use IEnvironmentProvider.TickCount instead.
+P:System.Environment.TickCount64;Use IEnvironmentProvider.TickCount64 instead.
+P:System.Environment.UserDomainName;Use IEnvironmentProvider.UserDomainName instead.
+P:System.Environment.UserInteractive;Use IEnvironmentProvider.UserInteractive instead.
+P:System.Environment.UserName;Use IEnvironmentProvider.UserName instead.
+P:System.Environment.Version;Use IEnvironmentProvider.Version instead.
+P:System.Environment.WorkingSet;Use IEnvironmentProvider.WorkingSet instead.
