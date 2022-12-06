@@ -5,7 +5,7 @@
                      Visible="false" />
 
     <AdditionalFiles Include="$(MSBuildThisFileDirectory)BannedSymbols.EnvironmentAbstractions.IEnvironmentVariableProvider.txt"
-                     Condition="'$(BanSystemEnvironmentVariableAPIs)' == 'true"
+                     Condition="'$(BanSystemEnvironmentVariableAPIs)' == 'true'"
                      Visible="false" />
   </ItemGroup>
 </Project>
