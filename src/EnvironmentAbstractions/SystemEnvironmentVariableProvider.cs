@@ -2,7 +2,6 @@
 //
 // Licensed under the MIT license.
 
-using System;
 using System.Collections.Generic;
 
 namespace System
@@ -21,25 +20,25 @@ namespace System
         /// </summary>
         public static IEnvironmentVariableProvider Instance { get; } = new SystemEnvironmentVariableProvider();
 
-        /// <inheritdoc cref="IEnvironmentVariableProvider.ExpandEnvironmentVariables(string)" />
+        /// <inheritdoc />
         public string? ExpandEnvironmentVariables(string name) => Environment.ExpandEnvironmentVariables(name);
 
-        /// <inheritdoc cref="IEnvironmentVariableProvider.GetEnvironmentVariable(string, EnvironmentVariableTarget)" />
+        /// <inheritdoc />
         public string? GetEnvironmentVariable(string name, EnvironmentVariableTarget target) => Environment.GetEnvironmentVariable(name, target);
 
-        /// <inheritdoc cref="IEnvironmentVariableProvider.GetEnvironmentVariable(string)" />
+        /// <inheritdoc />
         public string? GetEnvironmentVariable(string name) => Environment.GetEnvironmentVariable(name);
 
-        /// <inheritdoc cref="IEnvironmentVariableProvider.GetEnvironmentVariables()" />
+        /// <inheritdoc />
         public IReadOnlyDictionary<string, string> GetEnvironmentVariables() => new GetEnvironmentVariablesWrapper();
 
-        /// <inheritdoc cref="IEnvironmentVariableProvider.GetEnvironmentVariables(EnvironmentVariableTarget)" />
+        /// <inheritdoc />
         public IReadOnlyDictionary<string, string> GetEnvironmentVariables(EnvironmentVariableTarget target) => new GetEnvironmentVariablesWrapper(target);
 
-        /// <inheritdoc cref="IEnvironmentVariableProvider.SetEnvironmentVariable(string, string?)" />
+        /// <inheritdoc />
         public void SetEnvironmentVariable(string name, string? value) => Environment.SetEnvironmentVariable(name, value);
 
-        /// <inheritdoc cref="IEnvironmentVariableProvider.SetEnvironmentVariable(string, string?, EnvironmentVariableTarget)" />
+        /// <inheritdoc />
         public void SetEnvironmentVariable(string name, string? value, EnvironmentVariableTarget target) => Environment.SetEnvironmentVariable(name, value, target);
     }
 }

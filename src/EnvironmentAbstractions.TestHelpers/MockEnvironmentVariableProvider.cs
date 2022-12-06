@@ -92,7 +92,7 @@ namespace EnvironmentAbstractions.TestHelpers
         /// <inheritdoc cref="IEnvironmentVariableProvider.GetEnvironmentVariable(string, EnvironmentVariableTarget)" />
         public string? GetEnvironmentVariable(string name, EnvironmentVariableTarget target)
         {
-            return _dictionary.TryGetValue(name, out string value) ? value : default;
+            return _dictionary.TryGetValue(name, out string? value) ? value : default;
         }
 
         /// <inheritdoc cref="IEnvironmentVariableProvider.GetEnvironmentVariable(string)" />

@@ -1,0 +1,18 @@
+﻿#nullable enable
+static System.SystemEnvironmentVariableProvider.Instance.get -> System.IEnvironmentVariableProvider!
+System.IEnvironmentVariableProvider
+System.IEnvironmentVariableProvider.ExpandEnvironmentVariables(string! name) -> string?
+System.IEnvironmentVariableProvider.GetEnvironmentVariable(string! name) -> string?
+System.IEnvironmentVariableProvider.GetEnvironmentVariable(string! name, System.EnvironmentVariableTarget target) -> string?
+System.IEnvironmentVariableProvider.GetEnvironmentVariables() -> System.Collections.Generic.IReadOnlyDictionary<string!, string!>!
+System.IEnvironmentVariableProvider.GetEnvironmentVariables(System.EnvironmentVariableTarget target) -> System.Collections.Generic.IReadOnlyDictionary<string!, string!>!
+System.IEnvironmentVariableProvider.SetEnvironmentVariable(string! name, string? value) -> void
+System.IEnvironmentVariableProvider.SetEnvironmentVariable(string! name, string? value, System.EnvironmentVariableTarget target) -> void
+System.SystemEnvironmentVariableProvider
+System.SystemEnvironmentVariableProvider.ExpandEnvironmentVariables(string! name) -> string?
+System.SystemEnvironmentVariableProvider.GetEnvironmentVariable(string! name) -> string?
+System.SystemEnvironmentVariableProvider.GetEnvironmentVariable(string! name, System.EnvironmentVariableTarget target) -> string?
+System.SystemEnvironmentVariableProvider.GetEnvironmentVariables() -> System.Collections.Generic.IReadOnlyDictionary<string!, string!>!
+System.SystemEnvironmentVariableProvider.GetEnvironmentVariables(System.EnvironmentVariableTarget target) -> System.Collections.Generic.IReadOnlyDictionary<string!, string!>!
+System.SystemEnvironmentVariableProvider.SetEnvironmentVariable(string! name, string? value) -> void
+System.SystemEnvironmentVariableProvider.SetEnvironmentVariable(string! name, string? value, System.EnvironmentVariableTarget target) -> void
