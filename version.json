@@ -4,8 +4,7 @@
   "assemblyVersion": "1.0",
   "versionHeightOffset": -1,
   "nugetPackageVersion": {
-    "semVer": "2",
-    "precision": "minor"
+    "semVer": "2"
   },
   "publicReleaseRefSpec": [
     "^refs/tags/v\\d+\\.\\d+\\.\\d+"
