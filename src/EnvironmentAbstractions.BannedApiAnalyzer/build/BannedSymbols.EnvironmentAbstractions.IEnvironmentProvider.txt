@@ -5,8 +5,8 @@ M:System.Environment.FailFast(System.String,System.Exception);Use IEnvironmentPr
 M:System.Environment.GetCommandLineArgs;Use IEnvironmentProvider.GetCommandLineArgs() instead.
 M:System.Environment.GetEnvironmentVariable(System.String);Use IEnvironmentProvider.GetEnvironmentVariable(string) instead.
 M:System.Environment.GetEnvironmentVariable(System.String,System.EnvironmentVariableTarget);Use IEnvironmentProvider.GetEnvironmentVariable(string, EnvironmentVariableTarget) instead.
-M:System.Environment.GetEnvironmentVariables(System.String);Use IEnvironmentProvider.GetEnvironmentVariable(string) instead.
-M:System.Environment.GetEnvironmentVariables(System.String,System.EnvironmentVariableTarget);Use IEnvironmentProvider.GetEnvironmentVariables(string, EnvironmentVariableTarget) instead.
+M:System.Environment.GetEnvironmentVariables;Use IEnvironmentProvider.GetEnvironmentVariables(string) instead.
+M:System.Environment.GetEnvironmentVariables(System.EnvironmentVariableTarget);Use IEnvironmentProvider.GetEnvironmentVariables(EnvironmentVariableTarget) instead.
 M:System.Environment.GetFolderPath(System.Environment.SpecialFolder);Use IEnvironmentProvider.GetFolderPath(Environment.SpecialFolder) instead.
 M:System.Environment.GetFolderPath(System.Environment.SpecialFolder,System.Environment.SpecialFolderOption);Use IEnvironmentProvider.GetFolderPath(Environment.SpecialFolder, Environment.SpecialFolderOption) instead.
 M:System.Environment.GetLogicalDrives;Use IEnvironmentProvider.GetLogicalDrives() instead.
