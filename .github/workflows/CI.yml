@@ -18,8 +18,6 @@ env:
   BuildConfiguration: 'Debug'
   BuildPlatform: 'Any CPU'
   ContinuousIntegrationBuild: 'true'
-  DotNet3Version: '3.x'
-  DotNet6Version: '6.x'
 
 jobs:
   BuildAndTest:
@@ -47,15 +45,13 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Install .NET ${{ env.DotNet3Version }}
+    - name: Install .NET SDKs
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: ${{ env.DotNet3Version }}
-
-    - name: Install .NET ${{ env.DotNet6Version }}
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: ${{ env.DotNet6Version }}
+        dotnet-version: | 
+          3.x
+          6.x
+          7.x
 
     - name: Build Solution
       run: dotnet build "/Property:Platform=${{ env.BuildPlatform }};Configuration=${{ env.BuildConfiguration }}" "/BinaryLogger:${{ env.ArtifactsDirectoryName }}/build.binlog"
