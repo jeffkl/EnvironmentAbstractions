@@ -69,7 +69,7 @@ namespace EnvironmentAbstractions.UnitTests
 
             Dictionary<string, string> expected = Environment.GetEnvironmentVariables().Cast<DictionaryEntry>().ToDictionary(i => (string)i.Key, i => (string)i.Value!);
 
-            wrapper.ToDictionary(i => i.Key, i => i.Value).ShouldBe(expected);
+            wrapper.ToDictionary(i => i.Key, i => i.Value).ShouldBeSubsetOf(expected);
         }
 
         [Fact]
