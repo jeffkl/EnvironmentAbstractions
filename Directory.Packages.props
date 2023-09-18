@@ -1,6 +1,8 @@
 <Project>
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <XunitRunnerVisualStudioVersion>2.5.1</XunitRunnerVisualStudioVersion>
+    <XunitRunnerVisualStudioVersion Condition="'$(TargetFramework)' == 'netcoreapp3.1'">2.4.5</XunitRunnerVisualStudioVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="coverlet.collector" Version="6.0.0" />
@@ -8,7 +10,7 @@
     <PackageVersion Include="Moq" Version="4.20.69" />
     <PackageVersion Include="Shouldly" Version="4.2.1" />
     <PackageVersion Include="xunit" Version="2.5.0" />
-    <PackageVersion Include="xunit.runner.visualstudio" Version="2.5.1" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="$(XunitRunnerVisualStudioVersion)" />
     <PackageVersion Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" Version="3.3.4" />
   </ItemGroup>
   <ItemGroup>
