@@ -11,10 +11,6 @@
     <NoWarn Condition="'$(TargetFramework)' == 'net5.0'">$(NoWarn);NETSDK1138</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <AdditionalFiles Include="PublicAPI\$(TargetFramework)\PublicAPI.*.txt" Visible="false" />
-    <Content Include="PublicAPI\**" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\EnvironmentAbstractions\EnvironmentAbstractions.csproj" />
   </ItemGroup>
 </Project>
