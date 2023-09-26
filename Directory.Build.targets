@@ -23,6 +23,11 @@
     <SymbolPackageFormat Condition="'$(SymbolPackageFormat)' == ''">snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
+  <ItemGroup  Condition="'$(EnablePublicApiAnalyzers)' == 'true'">
+    <AdditionalFiles Include="PublicAPI\$(TargetFramework)\PublicAPI.*.txt" Visible="false" />
+    <None Include="PublicAPI\**" />
+  </ItemGroup>
+
   <!-- Properties for test projects -->
   <PropertyGroup Condition="'$(IsTestProject)' == 'true'">
     <NoWarn>$(NoWarn);SA0001;SA1600</NoWarn>
