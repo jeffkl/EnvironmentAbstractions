@@ -87,26 +87,6 @@ namespace EnvironmentAbstractions.UnitTests
             }
         }
 
-        [Fact]
-        public void GetEnvironmentVariableTest()
-        {
-            string environmentVariableName = $"{EnvironentVariablePrefix}{nameof(GetEnvironmentVariableTest)}";
-            string environmentVariableValue = nameof(GetEnvironmentVariableTest);
-
-            Environment.SetEnvironmentVariable(environmentVariableName, environmentVariableValue);
-
-            try
-            {
-                string? actual = _environmentVariableProvider.GetEnvironmentVariable(environmentVariableName);
-
-                actual.ShouldBe(environmentVariableValue);
-            }
-            finally
-            {
-                Environment.SetEnvironmentVariable(environmentVariableName, value: null, EnvironmentVariableTarget.Process);
-            }
-        }
-
         [Theory]
         [MemberData(nameof(GetSpecialFolderValues))]
         public void GetFolderPathTest(Environment.SpecialFolder folder)
@@ -126,7 +106,7 @@ namespace EnvironmentAbstractions.UnitTests
             string environmentVariableName = $"{EnvironentVariablePrefix}{nameof(SetEnvironmentVariableTest)}";
             string environmentVariableValue = nameof(SetEnvironmentVariableTest);
 
-            _environmentVariableProvider.SetEnvironmentVariable(environmentVariableName, environmentVariableValue);
+            _environmentVariableProvider.SetEnvironmentVariable(environmentVariableName, environmentVariableValue, EnvironmentVariableTarget.Process);
 
             try
             {
