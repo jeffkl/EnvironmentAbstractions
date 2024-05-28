@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net6.0;net8.0</TargetFrameworks>
     <Description>Provides implementations of IEnvironmentVariableProvider so that unit tests can mock calls that retrieve environment variable.</Description>
     <PackageTags>Environment Variable Abstraction env var test helper</PackageTags>
     <ArtifactsPath>$(BaseArtifactsPath)\$(MSBuildProjectName)\</ArtifactsPath>
@@ -8,7 +8,6 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RootNamespace>System</RootNamespace>
     <EnablePublicApiAnalyzers>true</EnablePublicApiAnalyzers>
-    <NoWarn Condition="'$(TargetFramework)' == 'net5.0'">$(NoWarn);NETSDK1138</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\EnvironmentAbstractions\EnvironmentAbstractions.csproj" />

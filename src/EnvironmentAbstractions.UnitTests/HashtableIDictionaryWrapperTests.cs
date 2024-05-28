@@ -22,9 +22,11 @@ namespace EnvironmentAbstractions.UnitTests
         [Fact]
         public void GetEnvironmentVariablesWrapperContainsKeyReturnsSameValueAsGetEnvironmentVariable()
         {
-            GetEnvironmentVariablesWrapper wrapper = new GetEnvironmentVariablesWrapper();
+            IDictionary environmentVariables = Environment.GetEnvironmentVariables();
 
-            foreach (KeyValuePair<string, string> environmentVariable in Environment.GetEnvironmentVariables().Cast<DictionaryEntry>().Select(i => new KeyValuePair<string, string>((string)i.Key, (string)i.Value!)))
+            GetEnvironmentVariablesWrapper wrapper = new GetEnvironmentVariablesWrapper(environmentVariables);
+
+            foreach (KeyValuePair<string, string> environmentVariable in environmentVariables.Cast<DictionaryEntry>().Select(i => new KeyValuePair<string, string>((string)i.Key, (string)i.Value!)))
             {
                 wrapper.ContainsKey(environmentVariable.Key).ShouldBeTrue();
             }
@@ -53,9 +55,11 @@ namespace EnvironmentAbstractions.UnitTests
         [Fact]
         public void GetEnvironmentVariablesWrapperGetEnumeratorSameAsGetEnvironmentVariables()
         {
-            GetEnvironmentVariablesWrapper wrapper = new GetEnvironmentVariablesWrapper();
+            IDictionary environmentVariables = Environment.GetEnvironmentVariables();
 
-            Dictionary<string, string> expected = Environment.GetEnvironmentVariables().Cast<DictionaryEntry>().ToDictionary(i => (string)i.Key, i => (string)i.Value!);
+            GetEnvironmentVariablesWrapper wrapper = new GetEnvironmentVariablesWrapper(environmentVariables);
+
+            Dictionary<string, string> expected = environmentVariables.Cast<DictionaryEntry>().ToDictionary(i => (string)i.Key, i => (string)i.Value!);
 
             wrapper.ToDictionary(i => i.Key, i => i.Value).ShouldBeSubsetOf(expected);
         }
@@ -63,9 +67,11 @@ namespace EnvironmentAbstractions.UnitTests
         [Fact]
         public void GetEnvironmentVariablesWrapperIndexerReturnsSameValueAsGetEnvironmentVariable()
         {
-            GetEnvironmentVariablesWrapper wrapper = new GetEnvironmentVariablesWrapper();
+            IDictionary environmentVariables = Environment.GetEnvironmentVariables();
 
-            foreach (KeyValuePair<string, string> environmentVariable in Environment.GetEnvironmentVariables().Cast<DictionaryEntry>().Select(i => new KeyValuePair<string, string>((string)i.Key, (string)i.Value!)))
+            GetEnvironmentVariablesWrapper wrapper = new GetEnvironmentVariablesWrapper(environmentVariables);
+
+            foreach (KeyValuePair<string, string> environmentVariable in environmentVariables.Cast<DictionaryEntry>().Select(i => new KeyValuePair<string, string>((string)i.Key, (string)i.Value!)))
             {
                 string actual = wrapper[environmentVariable.Key];
 
@@ -76,9 +82,11 @@ namespace EnvironmentAbstractions.UnitTests
         [Fact]
         public void GetEnvironmentVariablesWrapperKeysSameAsGetEnvironmentVariables()
         {
-            GetEnvironmentVariablesWrapper wrapper = new GetEnvironmentVariablesWrapper();
+            IDictionary environmentVariables = Environment.GetEnvironmentVariables();
 
-            IEnumerable<string> expected = Environment.GetEnvironmentVariables().Cast<DictionaryEntry>().Select(i => (string)i.Key);
+            GetEnvironmentVariablesWrapper wrapper = new GetEnvironmentVariablesWrapper(environmentVariables);
+
+            IEnumerable<string> expected = environmentVariables.Cast<DictionaryEntry>().Select(i => (string)i.Key);
 
             wrapper.Keys.ShouldBe(expected);
         }
@@ -96,9 +104,11 @@ namespace EnvironmentAbstractions.UnitTests
         [Fact]
         public void GetEnvironmentVariablesWrapperTryGetValueReturnsSameValueAsGetEnvironmentVariable()
         {
-            GetEnvironmentVariablesWrapper wrapper = new GetEnvironmentVariablesWrapper();
+            IDictionary environmentVariables = Environment.GetEnvironmentVariables();
 
-            foreach (KeyValuePair<string, string> environmentVariable in Environment.GetEnvironmentVariables().Cast<DictionaryEntry>().Select(i => new KeyValuePair<string, string>((string)i.Key, (string)i.Value!)))
+            GetEnvironmentVariablesWrapper wrapper = new GetEnvironmentVariablesWrapper(environmentVariables);
+
+            foreach (KeyValuePair<string, string> environmentVariable in environmentVariables.Cast<DictionaryEntry>().Select(i => new KeyValuePair<string, string>((string)i.Key, (string)i.Value!)))
             {
                 wrapper.TryGetValue(environmentVariable.Key, out string actual).ShouldBeTrue($"{environmentVariable.Key} should exist");
 
@@ -109,9 +119,11 @@ namespace EnvironmentAbstractions.UnitTests
         [Fact]
         public void GetEnvironmentVariablesWrapperValuesSameAsGetEnvironmentVariables()
         {
-            GetEnvironmentVariablesWrapper wrapper = new GetEnvironmentVariablesWrapper();
+            IDictionary environmentVariables = Environment.GetEnvironmentVariables();
 
-            IEnumerable<string> expected = Environment.GetEnvironmentVariables().Cast<DictionaryEntry>().Select(i => (string)i.Value!);
+            GetEnvironmentVariablesWrapper wrapper = new GetEnvironmentVariablesWrapper(environmentVariables);
+
+            IEnumerable<string> expected = environmentVariables.Cast<DictionaryEntry>().Select(i => (string)i.Value!);
 
             wrapper.Values.ShouldBe(expected);
         }

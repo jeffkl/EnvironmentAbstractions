@@ -24,7 +24,7 @@
   </PropertyGroup>
 
   <ItemGroup  Condition="'$(EnablePublicApiAnalyzers)' == 'true'">
-    <AdditionalFiles Include="PublicAPI\$(TargetFramework)\PublicAPI.*.txt" Visible="false" />
+    <AdditionalFiles Include="PublicAPI\$(TargetFramework)\PublicAPI.*.txt" />
     <None Include="PublicAPI\**" />
   </ItemGroup>
 

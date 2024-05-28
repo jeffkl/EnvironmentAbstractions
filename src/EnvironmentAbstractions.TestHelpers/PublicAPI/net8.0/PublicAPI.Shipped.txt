@@ -1,4 +1,16 @@
-﻿#nullable enable
+#nullable enable
+EnvironmentAbstractions.TestHelpers.MockEnvironmentVariableProvider
+EnvironmentAbstractions.TestHelpers.MockEnvironmentVariableProvider.Add(string! name, string? value) -> void
+EnvironmentAbstractions.TestHelpers.MockEnvironmentVariableProvider.ExpandEnvironmentVariables(string! name) -> string?
+EnvironmentAbstractions.TestHelpers.MockEnvironmentVariableProvider.GetEnvironmentVariable(string! name) -> string?
+EnvironmentAbstractions.TestHelpers.MockEnvironmentVariableProvider.GetEnvironmentVariable(string! name, System.EnvironmentVariableTarget target) -> string?
+EnvironmentAbstractions.TestHelpers.MockEnvironmentVariableProvider.GetEnvironmentVariables() -> System.Collections.Generic.IReadOnlyDictionary<string!, string!>!
+EnvironmentAbstractions.TestHelpers.MockEnvironmentVariableProvider.GetEnvironmentVariables(System.EnvironmentVariableTarget target) -> System.Collections.Generic.IReadOnlyDictionary<string!, string!>!
+EnvironmentAbstractions.TestHelpers.MockEnvironmentVariableProvider.MockEnvironmentVariableProvider(bool addExistingEnvironmentVariables = false) -> void
+EnvironmentAbstractions.TestHelpers.MockEnvironmentVariableProvider.SetEnvironmentVariable(string! name, string? value) -> void
+EnvironmentAbstractions.TestHelpers.MockEnvironmentVariableProvider.SetEnvironmentVariable(string! name, string? value, System.EnvironmentVariableTarget target) -> void
+EnvironmentAbstractions.TestHelpers.MockEnvironmentVariableProvider.this[string! name].get -> string?
+EnvironmentAbstractions.TestHelpers.MockEnvironmentVariableProvider.this[string! name].set -> void
 System.MockEnvironmentProvider
 System.MockEnvironmentProvider.CommandLine.get -> string!
 System.MockEnvironmentProvider.CommandLine.set -> void
@@ -28,8 +40,12 @@ System.MockEnvironmentProvider.NewLine.get -> string!
 System.MockEnvironmentProvider.NewLine.set -> void
 System.MockEnvironmentProvider.OSVersion.get -> System.OperatingSystem!
 System.MockEnvironmentProvider.OSVersion.set -> void
+System.MockEnvironmentProvider.ProcessId.get -> int
+System.MockEnvironmentProvider.ProcessId.set -> void
 System.MockEnvironmentProvider.ProcessorCount.get -> int
 System.MockEnvironmentProvider.ProcessorCount.set -> void
+System.MockEnvironmentProvider.ProcessPath.get -> string?
+System.MockEnvironmentProvider.ProcessPath.set -> void
 System.MockEnvironmentProvider.SetCommandLineArgs(string![]! args) -> void
 System.MockEnvironmentProvider.SetFolderPath(System.Environment.SpecialFolder folder, string! path) -> void
 System.MockEnvironmentProvider.SetLogicalDrives(string![]! drives) -> void
