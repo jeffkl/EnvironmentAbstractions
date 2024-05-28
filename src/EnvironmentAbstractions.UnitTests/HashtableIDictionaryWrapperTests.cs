@@ -63,9 +63,11 @@ namespace EnvironmentAbstractions.UnitTests
         [Fact]
         public void GetEnvironmentVariablesWrapperIndexerReturnsSameValueAsGetEnvironmentVariable()
         {
-            GetEnvironmentVariablesWrapper wrapper = new GetEnvironmentVariablesWrapper();
+            IDictionary environmentVariables = Environment.GetEnvironmentVariables();
 
-            foreach (KeyValuePair<string, string> environmentVariable in Environment.GetEnvironmentVariables().Cast<DictionaryEntry>().Select(i => new KeyValuePair<string, string>((string)i.Key, (string)i.Value!)))
+            GetEnvironmentVariablesWrapper wrapper = new GetEnvironmentVariablesWrapper(environmentVariables);
+
+            foreach (KeyValuePair<string, string> environmentVariable in environmentVariables.Cast<DictionaryEntry>().Select(i => new KeyValuePair<string, string>((string)i.Key, (string)i.Value!)))
             {
                 string actual = wrapper[environmentVariable.Key];
 

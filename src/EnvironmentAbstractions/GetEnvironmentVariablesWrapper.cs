@@ -40,7 +40,7 @@ namespace System
         /// </summary>
         /// <param name="environmentVariables">A <see cref="IDictionary" /> containing environment variables.</param>
         /// <exception cref="InvalidOperationException"><paramref name="environmentVariables" />'s underlying object is not of type <see cref="Hashtable" />.</exception>
-        private GetEnvironmentVariablesWrapper(IDictionary environmentVariables)
+        internal GetEnvironmentVariablesWrapper(IDictionary environmentVariables)
         {
             // This should never throw unless something changes in the BCL
             if (environmentVariables is not Hashtable hashtable)

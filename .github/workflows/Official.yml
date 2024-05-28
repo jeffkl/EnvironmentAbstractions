@@ -27,8 +27,7 @@ jobs:
     - name: Install .NET SDKs
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-quality: 'preview'
-        dotnet-version: | 
+        dotnet-version: |
           8.x
 
     - name: Build Solution
