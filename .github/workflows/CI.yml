@@ -46,7 +46,7 @@ jobs:
         fetch-depth: 0
 
     - name: Install .NET SDKs
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: | 
           6.x
@@ -82,7 +82,7 @@ jobs:
       run: cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY
 
     - name: Upload Test Results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: success() || failure()
       with:
         name: test-results-${{ matrix.name }}
@@ -90,7 +90,7 @@ jobs:
         if-no-files-found: error
 
     - name: Upload Artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: success() || failure()
       with:
         name: ${{ env.ArtifactsDirectoryName }}-${{ matrix.name }}
