@@ -12,6 +12,11 @@ namespace System
         /// <inheritdoc cref="Environment.CommandLine" />
         string CommandLine { get; }
 
+#if NET9_0_OR_GREATER
+        /// <inheritdoc cref="Environment.CpuUsage" />
+        Environment.ProcessCpuUsage CpuUsage { get; }
+#endif
+
         /// <inheritdoc cref="Environment.CurrentDirectory" />
         string CurrentDirectory { get; set; }
 
@@ -29,6 +34,11 @@ namespace System
 
         /// <inheritdoc cref="Environment.Is64BitProcess" />
         bool Is64BitProcess { get; }
+
+#if NET9_0_OR_GREATER
+        /// <inheritdoc cref="Environment.IsPrivilegedProcess" />
+        bool IsPrivilegedProcess { get; }
+#endif
 
         /// <inheritdoc cref="Environment.MachineName" />
         string MachineName { get; }

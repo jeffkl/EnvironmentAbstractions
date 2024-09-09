@@ -24,7 +24,7 @@ namespace EnvironmentAbstractions.UnitTests
 
         public static IEnumerable<object[]> GetSpecialFolderValues()
         {
-            return Enum.GetValues(typeof(Environment.SpecialFolder)).Cast<Environment.SpecialFolder>().Select(i => new object[] { i });
+            return Enum.GetValues(typeof(Environment.SpecialFolder)).Cast<Environment.SpecialFolder>().Distinct().Select(i => new object[] { i });
         }
 
         [Fact]

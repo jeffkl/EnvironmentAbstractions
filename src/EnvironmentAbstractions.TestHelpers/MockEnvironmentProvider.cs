@@ -33,12 +33,18 @@ namespace System
             if (useExistingEnvironmentValues)
             {
                 CommandLine = Environment.CommandLine;
+#if NET9_0_OR_GREATER
+                CpuUsage = Environment.CpuUsage;
+#endif
                 CurrentDirectory = Environment.CurrentDirectory;
                 CurrentManagedThreadId = Environment.CurrentManagedThreadId;
                 ExitCode = Environment.ExitCode;
                 HasShutdownStarted = Environment.HasShutdownStarted;
                 Is64BitOperatingSystem = Environment.Is64BitOperatingSystem;
                 Is64BitProcess = Environment.Is64BitProcess;
+#if NET9_0_OR_GREATER
+                IsPrivilegedProcess = Environment.IsPrivilegedProcess;
+#endif
                 MachineName = Environment.MachineName;
                 NewLine = Environment.NewLine;
                 OSVersion = Environment.OSVersion;
@@ -88,6 +94,11 @@ namespace System
         /// <inheritdoc />
         public string CommandLine { get; set; }
 
+#if NET9_0_OR_GREATER
+        /// <inheritdoc />
+        public Environment.ProcessCpuUsage CpuUsage { get; set; }
+#endif
+
         /// <inheritdoc />
         public string CurrentDirectory { get; set; }
 
@@ -105,6 +116,11 @@ namespace System
 
         /// <inheritdoc />
         public bool Is64BitProcess { get; set; }
+
+#if NET9_0_OR_GREATER
+        /// <inheritdoc />
+        public bool IsPrivilegedProcess { get; }
+#endif
 
         /// <inheritdoc />
         public string MachineName { get; set; }
