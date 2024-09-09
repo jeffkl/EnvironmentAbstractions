@@ -1,7 +1,9 @@
 ﻿#nullable enable
 static System.SystemEnvironmentProvider.Instance.get -> System.IEnvironmentProvider!
+static System.SystemEnvironmentVariableProvider.Instance.get -> System.IEnvironmentVariableProvider!
 System.IEnvironmentProvider
 System.IEnvironmentProvider.CommandLine.get -> string!
+System.IEnvironmentProvider.CpuUsage.get -> System.Environment.ProcessCpuUsage
 System.IEnvironmentProvider.CurrentDirectory.get -> string!
 System.IEnvironmentProvider.CurrentDirectory.set -> void
 System.IEnvironmentProvider.CurrentManagedThreadId.get -> int
@@ -16,10 +18,13 @@ System.IEnvironmentProvider.GetLogicalDrives() -> string![]!
 System.IEnvironmentProvider.HasShutdownStarted.get -> bool
 System.IEnvironmentProvider.Is64BitOperatingSystem.get -> bool
 System.IEnvironmentProvider.Is64BitProcess.get -> bool
+System.IEnvironmentProvider.IsPrivilegedProcess.get -> bool
 System.IEnvironmentProvider.MachineName.get -> string!
 System.IEnvironmentProvider.NewLine.get -> string!
 System.IEnvironmentProvider.OSVersion.get -> System.OperatingSystem!
+System.IEnvironmentProvider.ProcessId.get -> int
 System.IEnvironmentProvider.ProcessorCount.get -> int
+System.IEnvironmentProvider.ProcessPath.get -> string?
 System.IEnvironmentProvider.StackTrace.get -> string!
 System.IEnvironmentProvider.SystemDirectory.get -> string!
 System.IEnvironmentProvider.SystemPageSize.get -> int
@@ -30,8 +35,17 @@ System.IEnvironmentProvider.UserInteractive.get -> bool
 System.IEnvironmentProvider.UserName.get -> string!
 System.IEnvironmentProvider.Version.get -> System.Version!
 System.IEnvironmentProvider.WorkingSet.get -> long
+System.IEnvironmentVariableProvider
+System.IEnvironmentVariableProvider.ExpandEnvironmentVariables(string! name) -> string?
+System.IEnvironmentVariableProvider.GetEnvironmentVariable(string! name) -> string?
+System.IEnvironmentVariableProvider.GetEnvironmentVariable(string! name, System.EnvironmentVariableTarget target) -> string?
+System.IEnvironmentVariableProvider.GetEnvironmentVariables() -> System.Collections.Generic.IReadOnlyDictionary<string!, string!>!
+System.IEnvironmentVariableProvider.GetEnvironmentVariables(System.EnvironmentVariableTarget target) -> System.Collections.Generic.IReadOnlyDictionary<string!, string!>!
+System.IEnvironmentVariableProvider.SetEnvironmentVariable(string! name, string? value) -> void
+System.IEnvironmentVariableProvider.SetEnvironmentVariable(string! name, string? value, System.EnvironmentVariableTarget target) -> void
 System.SystemEnvironmentProvider
 System.SystemEnvironmentProvider.CommandLine.get -> string!
+System.SystemEnvironmentProvider.CpuUsage.get -> System.Environment.ProcessCpuUsage
 System.SystemEnvironmentProvider.CurrentDirectory.get -> string!
 System.SystemEnvironmentProvider.CurrentDirectory.set -> void
 System.SystemEnvironmentProvider.CurrentManagedThreadId.get -> int
@@ -52,10 +66,13 @@ System.SystemEnvironmentProvider.GetLogicalDrives() -> string![]!
 System.SystemEnvironmentProvider.HasShutdownStarted.get -> bool
 System.SystemEnvironmentProvider.Is64BitOperatingSystem.get -> bool
 System.SystemEnvironmentProvider.Is64BitProcess.get -> bool
+System.SystemEnvironmentProvider.IsPrivilegedProcess.get -> bool
 System.SystemEnvironmentProvider.MachineName.get -> string!
 System.SystemEnvironmentProvider.NewLine.get -> string!
 System.SystemEnvironmentProvider.OSVersion.get -> System.OperatingSystem!
+System.SystemEnvironmentProvider.ProcessId.get -> int
 System.SystemEnvironmentProvider.ProcessorCount.get -> int
+System.SystemEnvironmentProvider.ProcessPath.get -> string?
 System.SystemEnvironmentProvider.SetEnvironmentVariable(string! name, string? value) -> void
 System.SystemEnvironmentProvider.SetEnvironmentVariable(string! name, string? value, System.EnvironmentVariableTarget target) -> void
 System.SystemEnvironmentProvider.StackTrace.get -> string!
@@ -69,3 +86,11 @@ System.SystemEnvironmentProvider.UserInteractive.get -> bool
 System.SystemEnvironmentProvider.UserName.get -> string!
 System.SystemEnvironmentProvider.Version.get -> System.Version!
 System.SystemEnvironmentProvider.WorkingSet.get -> long
+System.SystemEnvironmentVariableProvider
+System.SystemEnvironmentVariableProvider.ExpandEnvironmentVariables(string! name) -> string?
+System.SystemEnvironmentVariableProvider.GetEnvironmentVariable(string! name) -> string?
+System.SystemEnvironmentVariableProvider.GetEnvironmentVariable(string! name, System.EnvironmentVariableTarget target) -> string?
+System.SystemEnvironmentVariableProvider.GetEnvironmentVariables() -> System.Collections.Generic.IReadOnlyDictionary<string!, string!>!
+System.SystemEnvironmentVariableProvider.GetEnvironmentVariables(System.EnvironmentVariableTarget target) -> System.Collections.Generic.IReadOnlyDictionary<string!, string!>!
+System.SystemEnvironmentVariableProvider.SetEnvironmentVariable(string! name, string? value) -> void
+System.SystemEnvironmentVariableProvider.SetEnvironmentVariable(string! name, string? value, System.EnvironmentVariableTarget target) -> void

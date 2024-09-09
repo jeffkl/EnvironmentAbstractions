@@ -19,6 +19,11 @@ namespace System
         /// <inheritdoc />
         public string CommandLine => Environment.CommandLine;
 
+#if NET9_0_OR_GREATER
+        /// <inheritdoc/>
+        public Environment.ProcessCpuUsage CpuUsage => Environment.CpuUsage;
+#endif
+
         /// <inheritdoc />
         public string CurrentDirectory
         {
@@ -44,6 +49,11 @@ namespace System
 
         /// <inheritdoc />
         public bool Is64BitProcess => Environment.Is64BitProcess;
+
+#if NET9_0_OR_GREATER
+        /// <inheritdoc />
+        public bool IsPrivilegedProcess { get; }
+#endif
 
         /// <inheritdoc />
         public string MachineName => Environment.MachineName;
