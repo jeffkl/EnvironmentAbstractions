@@ -5,8 +5,8 @@ M:System.Environment.FailFast(System.String,System.Exception);Use IEnvironmentPr
 M:System.Environment.GetCommandLineArgs;Use IEnvironmentProvider.GetCommandLineArgs() instead.
 M:System.Environment.GetEnvironmentVariable(System.String);Use IEnvironmentProvider.GetEnvironmentVariable(string) instead.
 M:System.Environment.GetEnvironmentVariable(System.String,System.EnvironmentVariableTarget);Use IEnvironmentProvider.GetEnvironmentVariable(string, EnvironmentVariableTarget) instead.
-M:System.Environment.GetEnvironmentVariables;Use IEnvironmentProvider.GetEnvironmentVariables(string) instead.
 M:System.Environment.GetEnvironmentVariables(System.EnvironmentVariableTarget);Use IEnvironmentProvider.GetEnvironmentVariables(EnvironmentVariableTarget) instead.
+M:System.Environment.GetEnvironmentVariables;Use IEnvironmentProvider.GetEnvironmentVariables(string) instead.
 M:System.Environment.GetFolderPath(System.Environment.SpecialFolder);Use IEnvironmentProvider.GetFolderPath(Environment.SpecialFolder) instead.
 M:System.Environment.GetFolderPath(System.Environment.SpecialFolder,System.Environment.SpecialFolderOption);Use IEnvironmentProvider.GetFolderPath(Environment.SpecialFolder, Environment.SpecialFolderOption) instead.
 M:System.Environment.GetLogicalDrives;Use IEnvironmentProvider.GetLogicalDrives() instead.
@@ -19,9 +19,11 @@ P:System.Environment.ExitCode;Use IEnvironmentProvider.ExitCode instead.
 P:System.Environment.HasShutdownStarted;Use IEnvironmentProvider.HasShutdownStarted instead.
 P:System.Environment.Is64BitOperatingSystem;Use IEnvironmentProvider.Is64BitOperatingSystem instead.
 P:System.Environment.Is64BitProcess;Use IEnvironmentProvider.Is64BitProcess instead.
+P:System.Environment.IsPrivilegedProcess;Use IEnvironmentProvider.IsPrivilegedProcess instead.
 P:System.Environment.MachineName;Use IEnvironmentProvider.MachineName instead.
 P:System.Environment.NewLine;Use IEnvironmentProvider.NewLine instead.
 P:System.Environment.OSVersion;Use IEnvironmentProvider.OSVersion instead.
+P:System.Environment.ProcessCpuUsage;Use IEnvironmentProvider.ProcessCpuUsage instead.
 P:System.Environment.ProcessId;Use IEnvironmentProvider.ProcessId instead.
 P:System.Environment.ProcessorCount;Use IEnvironmentProvider.ProcessorCount instead.
 P:System.Environment.ProcessPath;Use IEnvironmentProvider.ProcessPath instead.
