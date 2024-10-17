@@ -22,7 +22,7 @@ Add a `<PackageReference />` to the [EnvironmentAbstractions](https://nuget.org/
 
 ## `IEnvironmentProvider`
 
-The `IEnvironmentProvider` interfaces provides an abstraction for everything in the `System.Environment` class including getting system information, user information, or accessing environment variables.
+The `IEnvironmentProvider` interface provides an abstraction for everything in the `System.Environment` class including getting system information, user information, or accessing environment variables.
 
 Use the `IEnvironmentProvider` interface when accessing the environment your code:
 
