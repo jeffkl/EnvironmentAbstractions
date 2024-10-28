@@ -1,1 +1,2 @@
 #nullable enable
+EnvironmentAbstractions.TestHelpers.MockEnvironmentVariableProvider.Add(string! name, string? value, System.EnvironmentVariableTarget environmentVariableTarget) -> void

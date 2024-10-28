@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace EnvironmentAbstractions.TestHelpers
@@ -14,7 +15,12 @@ namespace EnvironmentAbstractions.TestHelpers
     /// </summary>
     public class MockEnvironmentVariableProvider : IEnvironmentVariableProvider
     {
-        private readonly ConcurrentDictionary<string, string> _dictionary = new ConcurrentDictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        private readonly ConcurrentDictionary<string, string>[] _dictionaries = new[]
+        {
+            new ConcurrentDictionary<string, string>(StringComparer.OrdinalIgnoreCase),
+            new ConcurrentDictionary<string, string>(StringComparer.OrdinalIgnoreCase),
+            new ConcurrentDictionary<string, string>(StringComparer.OrdinalIgnoreCase),
+        };
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MockEnvironmentVariableProvider" /> class.
@@ -24,9 +30,14 @@ namespace EnvironmentAbstractions.TestHelpers
         {
             if (addExistingEnvironmentVariables)
             {
-                foreach (KeyValuePair<string, string> item in SystemEnvironmentVariableProvider.Instance.GetEnvironmentVariables())
+                for (int i = (int)EnvironmentVariableTarget.Machine; i >= 0; i--)
                 {
-                    Add(item.Key, item.Value);
+                    EnvironmentVariableTarget environmentVariableTarget = (EnvironmentVariableTarget)i;
+
+                    foreach (KeyValuePair<string, string> item in SystemEnvironmentVariableProvider.Instance.GetEnvironmentVariables(environmentVariableTarget))
+                    {
+                        Add(item.Key, item.Value, environmentVariableTarget);
+                    }
                 }
             }
         }
@@ -49,6 +60,12 @@ namespace EnvironmentAbstractions.TestHelpers
         public void Add(string name, string? value)
         {
             SetEnvironmentVariable(name, value);
+        }
+
+        /// <inheritdoc cref="SetEnvironmentVariable(string, string?, EnvironmentVariableTarget)" />
+        public void Add(string name, string? value, EnvironmentVariableTarget environmentVariableTarget)
+        {
+            SetEnvironmentVariable(name, value, environmentVariableTarget);
         }
 
         /// <inheritdoc cref="IEnvironmentVariableProvider.ExpandEnvironmentVariables(string)" />
@@ -92,7 +109,9 @@ namespace EnvironmentAbstractions.TestHelpers
         /// <inheritdoc cref="IEnvironmentVariableProvider.GetEnvironmentVariable(string, EnvironmentVariableTarget)" />
         public string? GetEnvironmentVariable(string name, EnvironmentVariableTarget target)
         {
-            return _dictionary.TryGetValue(name, out string? value) ? value : default;
+            ConcurrentDictionary<string, string> dictionary = _dictionaries[(int)target];
+
+            return dictionary.TryGetValue(name, out string? value) ? value : default;
         }
 
         /// <inheritdoc cref="IEnvironmentVariableProvider.GetEnvironmentVariable(string)" />
@@ -110,7 +129,19 @@ namespace EnvironmentAbstractions.TestHelpers
         /// <inheritdoc cref="IEnvironmentVariableProvider.GetEnvironmentVariables(EnvironmentVariableTarget)" />
         public IReadOnlyDictionary<string, string> GetEnvironmentVariables(EnvironmentVariableTarget target)
         {
-            return _dictionary;
+            Dictionary<string, string> environmentVariables = new Dictionary<string, string>(capacity: _dictionaries.Sum(i => i.Count), StringComparer.OrdinalIgnoreCase);
+
+            for (int i = (int)EnvironmentVariableTarget.Machine; i >= 0; i--)
+            {
+                ConcurrentDictionary<string, string> dictionary = _dictionaries[i];
+
+                foreach (var item in dictionary)
+                {
+                    environmentVariables[item.Key] = item.Value;
+                }
+            }
+
+            return environmentVariables;
         }
 
         /// <inheritdoc cref="IEnvironmentVariableProvider.SetEnvironmentVariable(string, string?)" />
@@ -122,13 +153,15 @@ namespace EnvironmentAbstractions.TestHelpers
         /// <inheritdoc cref="IEnvironmentVariableProvider.SetEnvironmentVariable(string, string?, EnvironmentVariableTarget)" />
         public void SetEnvironmentVariable(string name, string? value, EnvironmentVariableTarget target)
         {
+            ConcurrentDictionary<string, string> dictionary = _dictionaries[(int)target];
+
             if (value != null)
             {
-                _dictionary[name] = value;
+                dictionary[name] = value;
             }
             else
             {
-                _dictionary.TryRemove(name, out _);
+                dictionary.TryRemove(name, out _);
             }
         }
     }
