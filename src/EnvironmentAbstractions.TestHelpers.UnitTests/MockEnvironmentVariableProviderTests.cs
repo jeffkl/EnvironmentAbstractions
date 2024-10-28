@@ -5,7 +5,6 @@
 using Shouldly;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Xunit;
 
 namespace EnvironmentAbstractions.TestHelpers.UnitTests
@@ -16,6 +15,8 @@ namespace EnvironmentAbstractions.TestHelpers.UnitTests
         private const string EnvironmentVariable1Value = "Value1";
         private const string EnvironmentVariable2Name = "Var2";
         private const string EnvironmentVariable2Value = "Value2";
+        private const string EnvironmentVariable3Name = "Var3";
+        private const string EnvironmentVariable3Value = "Value3";
 
         [Fact]
         public void AddsExistingEnvironmentVariablesTest()
@@ -52,11 +53,6 @@ namespace EnvironmentAbstractions.TestHelpers.UnitTests
                 [EnvironmentVariable1Name] = EnvironmentVariable1Value,
                 [EnvironmentVariable2Name] = EnvironmentVariable2Value,
             };
-
-            foreach (KeyValuePair<string, string> item in environmentVariableProvider.GetEnvironmentVariables().OrderBy(i => i.Key))
-            {
-                Console.WriteLine("{0}={1}", item.Key, item.Value);
-            }
 
             environmentVariableProvider.ExpandEnvironmentVariables("Leading text %VAR1% middle text %VAR2% trailing text")
                 .ShouldBe("Leading text Value1 middle text Value2 trailing text");
@@ -101,11 +97,27 @@ namespace EnvironmentAbstractions.TestHelpers.UnitTests
                 [EnvironmentVariable1Name] = EnvironmentVariable1Value,
             };
 
-            string? actual = environmentVariableTarget == null
-                ? environmentVariableProvider.GetEnvironmentVariable(EnvironmentVariable1Name)
-                : environmentVariableProvider.GetEnvironmentVariable(EnvironmentVariable1Name, environmentVariableTarget.Value);
+            environmentVariableProvider.SetEnvironmentVariable(EnvironmentVariable2Name, EnvironmentVariable2Value, EnvironmentVariableTarget.User);
+            environmentVariableProvider.SetEnvironmentVariable(EnvironmentVariable3Name, EnvironmentVariable3Value, EnvironmentVariableTarget.Machine);
 
-            actual.ShouldBe(EnvironmentVariable1Value);
+            switch (environmentVariableTarget)
+            {
+                case EnvironmentVariableTarget.Machine:
+                    environmentVariableProvider.GetEnvironmentVariable(EnvironmentVariable3Name, environmentVariableTarget.Value)
+                        .ShouldBe(EnvironmentVariable3Value);
+
+                    break;
+                case EnvironmentVariableTarget.User:
+                    environmentVariableProvider.GetEnvironmentVariable(EnvironmentVariable2Name, environmentVariableTarget.Value)
+                        .ShouldBe(EnvironmentVariable2Value);
+                    break;
+                default:
+                    string? actual = environmentVariableTarget == null
+                        ? environmentVariableProvider.GetEnvironmentVariable(EnvironmentVariable1Name)
+                        : environmentVariableProvider.GetEnvironmentVariable(EnvironmentVariable1Name, environmentVariableTarget.Value);
+                    actual.ShouldBe(EnvironmentVariable1Value);
+                    break;
+            }
         }
 
         [Fact]
@@ -131,10 +143,7 @@ namespace EnvironmentAbstractions.TestHelpers.UnitTests
         [InlineData(null)]
         public void SetEnvironmentVariableTest(EnvironmentVariableTarget? environmentVariableTarget)
         {
-            IEnvironmentVariableProvider environmentVariableProvider = new MockEnvironmentVariableProvider
-            {
-                [EnvironmentVariable1Name] = EnvironmentVariable1Value,
-            };
+            IEnvironmentVariableProvider environmentVariableProvider = new MockEnvironmentVariableProvider();
 
             if (environmentVariableTarget == null)
             {
@@ -145,8 +154,11 @@ namespace EnvironmentAbstractions.TestHelpers.UnitTests
                 environmentVariableProvider.SetEnvironmentVariable(EnvironmentVariable1Name, EnvironmentVariable2Value, environmentVariableTarget.Value);
             }
 
-            environmentVariableProvider.GetEnvironmentVariable(EnvironmentVariable1Name)
-                .ShouldBe(EnvironmentVariable2Value);
+            string? actual = environmentVariableTarget == null
+                ? environmentVariableProvider.GetEnvironmentVariable(EnvironmentVariable1Name)
+                : environmentVariableProvider.GetEnvironmentVariable(EnvironmentVariable1Name, environmentVariableTarget.Value);
+
+            actual.ShouldBe(EnvironmentVariable2Value);
 
             if (environmentVariableTarget == null)
             {
