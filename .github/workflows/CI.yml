@@ -13,7 +13,6 @@ on:
 
 env:
   ArtifactsDirectoryName: 'artifacts'
-  TestResultsDirectoryName: 'coverage'
   CommonTestArguments: '--no-restore --no-build --logger trx /noautorsp'
   BuildConfiguration: 'Debug'
   BuildPlatform: 'Any CPU'
@@ -30,7 +29,7 @@ jobs:
             testarguments: ''
           - os: ubuntu-latest
             name: Linux
-            testarguments: '--collect:"XPlat Code Coverage"'
+            testarguments: ''
           - os: macos-latest
             name: MacOS
             testarguments: ''
@@ -45,17 +44,17 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Install .NET 6.x and 8.x
+    - name: Install .NET 8.x and 9.x
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: | 
-          6.x
           8.x
+          9.x
 
-    - name: Install .NET 9.0
+    - name: Install .NET 10.0
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 9.x
+        dotnet-version: 10.x
         dotnet-quality: 'preview'
 
     - name: Build Solution
@@ -65,31 +64,12 @@ jobs:
       if: ${{ matrix.name == 'Windows' }}
       run: dotnet test ${{ env.CommonTestArguments }} ${{ matrix.TestArguments}} --framework net472 "/Property:Platform=${{ env.BuildPlatform }};Configuration=${{ env.BuildConfiguration }}" "/BinaryLogger:${{ env.ArtifactsDirectoryName }}/test-net472.binlog"
 
-    - name: Run Unit Tests (.NET 6.0)
-      run: dotnet test ${{ env.CommonTestArguments }} ${{ matrix.TestArguments}} --framework net6.0 "/Property:Platform=${{ env.BuildPlatform }};Configuration=${{ env.BuildConfiguration }}" "/BinaryLogger:${{ env.ArtifactsDirectoryName }}/test-net6.0.binlog"
-
     - name: Run Unit Tests (.NET 8.0)
       run: dotnet test ${{ env.CommonTestArguments }} ${{ matrix.TestArguments}} --framework net8.0 "/Property:Platform=${{ env.BuildPlatform }};Configuration=${{ env.BuildConfiguration }}" "/BinaryLogger:${{ env.ArtifactsDirectoryName }}/test-net8.0.binlog"
 
     - name: Run Unit Tests (.NET 9.0)
       run: dotnet test ${{ env.CommonTestArguments }} ${{ matrix.TestArguments}} --framework net9.0 "/Property:Platform=${{ env.BuildPlatform }};Configuration=${{ env.BuildConfiguration }}" "/BinaryLogger:${{ env.ArtifactsDirectoryName }}/test-net9.0.binlog"
       
-    - name: Code Coverage Report
-      if: ${{ matrix.name == 'Linux' }}
-      uses: irongut/CodeCoverageSummary@v1.3.0
-      with:
-        filename: '**/TestResults/**/coverage.cobertura.xml'
-        badge: true
-        format: markdown
-        hide_complexity: true
-        indicators: true
-        output: both
-        thresholds: '60 80'
-
-    - name: Add Code Coverage Report to Summary
-      if: ${{ matrix.name == 'Linux' }}
-      run: cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY
-
     - name: Upload Test Results
       uses: actions/upload-artifact@v4
       if: success() || failure()
