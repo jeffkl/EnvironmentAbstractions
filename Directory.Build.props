@@ -8,5 +8,6 @@
     <Nullable>enable</Nullable>
     <Deterministic>true</Deterministic>
     <RestoreUseStaticGraphEvaluation>true</RestoreUseStaticGraphEvaluation>
+    <SuppressTfmSupportBuildErrors>true</SuppressTfmSupportBuildErrors>
   </PropertyGroup>
 </Project>
